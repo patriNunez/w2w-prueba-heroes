@@ -1,10 +1,14 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EnsureModuleLoadedOnceGuard } from './ensureModuleLoadedOnce.guard';
+import { HeroesService } from './services/heroes.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
+  exports: [HttpClientModule],
+  providers: [HeroesService],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

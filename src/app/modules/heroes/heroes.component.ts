@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, debounceTime, Observable, startWith } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  BehaviorSubject,
+  debounceTime,
+  Observable,
+  startWith,
+  Subject,
+} from 'rxjs';
+import { HeroesService } from 'src/app/core/services/heroes.service';
+import { IHeroe, DeleteDialogData } from '../../shared/models/interfaces';
+import { DeleteDialogComponent } from '../../shared/components/modals/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-heroes',
@@ -10,34 +20,33 @@ import { BehaviorSubject, debounceTime, Observable, startWith } from 'rxjs';
 export class HeroesComponent implements OnInit {
   itemsPerPage = 5;
   sizeOptions = [5, 10, 25, 100];
+  emptyheroe = {
+    id: 0,
+    name: '',
+    age: 0,
+    power: '',
+  };
   searchFormControl = new FormControl();
-  heroeControl = new FormControl();
+  heroeControl = new FormControl<IHeroe>(this.emptyheroe);
   actualPagination = 0;
   pageSize = this.itemsPerPage;
-  searchSubject: BehaviorSubject<string[]>;
-  search$: Observable<string[]>;
-
-  allHeroesList: string[] = [
-    'Boots',
-    'Clogs boots',
-    'Loafers',
-    'Moccasins',
-    'Sneakers',
-    'sfdfg',
-    'dfgf boots',
-    'Loafers boots',
-    'Moccasins boots',
-    'Sneakers boots',
-  ];
-  heroesResult: string[] = this.allHeroesList;
+  searchSubject: BehaviorSubject<IHeroe[]> = new BehaviorSubject<IHeroe[]>([]);
+  search$: Observable<IHeroe[]> = new Observable<IHeroe[]>();
+  allHeroesList: IHeroe[];
+  heroesFiltered: IHeroe[];
 
   selectionChange(option: any) {
     this.heroeControl.setValue(option.value);
   }
 
-  constructor() {
-    this.searchSubject = new BehaviorSubject(this.allHeroesList);
-    this.search$ = this.searchSubject.asObservable();
+  constructor(heroesService: HeroesService, public dialog: MatDialog) {
+    this.allHeroesList = [];
+    this.heroesFiltered = [];
+    heroesService.getHeroes().subscribe((heroes) => {
+      this.allHeroesList = heroes;
+      this.searchSubject = new BehaviorSubject(this.allHeroesList);
+      this.search$ = this.searchSubject.asObservable();
+    });
   }
 
   ngOnInit(): void {
@@ -48,16 +57,16 @@ export class HeroesComponent implements OnInit {
           this.changeResults(this.allHeroesList);
         } else {
           value = value.toLowerCase();
-          const filtered = this.allHeroesList.filter((names) =>
-            names.toLowerCase().includes(value)
+          const filtered = this.allHeroesList.filter((heroe) =>
+            heroe.name.toLowerCase().includes(value)
           );
           this.changeResults(filtered);
         }
       });
   }
 
-  changeResults(array: string[]) {
-    this.heroesResult = array;
+  changeResults(array: IHeroe[]) {
+    this.heroesFiltered = array;
     this.searchSubject.next(
       array.slice(this.actualPagination, this.actualPagination + this.pageSize)
     );
@@ -68,10 +77,25 @@ export class HeroesComponent implements OnInit {
     this.actualPagination = paginacion.pageIndex * paginacion.pageSize;
 
     this.searchSubject.next(
-      this.heroesResult.slice(
+      this.heroesFiltered.slice(
         this.actualPagination,
         this.actualPagination + paginacion.pageSize
       )
     );
+  }
+
+  openDialog() {
+    if (this.heroeControl.value?.name) {
+      const dialog = this.dialog.open(DeleteDialogComponent, {
+        data: {
+          heroe: this.heroeControl.value,
+        },
+      });
+      dialog.afterClosed().subscribe((result: IHeroe) => {
+        this.allHeroesList.splice(this.allHeroesList.indexOf(result), 1);
+        this.heroesFiltered.splice(this.heroesFiltered.indexOf(result), 1);
+        this.changeResults(this.heroesFiltered);
+      });
+    }
   }
 }

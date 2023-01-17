@@ -6,15 +6,19 @@
   </mat-form-field>
 
 <mat-selection-list #heroes [multiple]="false" (selectionChange)="selectionChange($event.option)">
-  <mat-list-option *ngFor="let heroe of search$|async" [value]="heroe"
-  [selected]="heroeControl.value && heroeControl.value?.indexOf(heroe)>=0">
-    {{heroe}}
+  <mat-list-option *ngFor="let heroe of search$|async" [value]="heroe">
+    {{heroe.name}}
   </mat-list-option>
 </mat-selection-list>
 <p>
-  Option selected: {{heroes.selectedOptions.hasValue() ? heroes.selectedOptions.selected[0].value : 'None'}}
+  Option selected: {{heroeControl.value?.name ?? 'None'}}
 </p>
 <mat-paginator [length]="allHeroesList.length" [pageSize]="5" (page)='paginate($event)'
 	[pageSizeOptions]="sizeOptions" showFirstLastButtons>
 
 </mat-paginator>
+<div class="actions">
+      <button mat-raised-button color="primary">Añadir</button>
+      <button mat-raised-button color="primary">Editar</button>
+      <button mat-raised-button color="primary" (click)="openDialog()">Eliminar</button>
+</div>

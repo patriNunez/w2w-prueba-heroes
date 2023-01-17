@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { IHeroes, IApiResponse } from '../../shared/models/interfaces';
+import { IHeroe, IApiResponse } from '../../shared/models/interfaces';
 import { UtilitiesService } from './utilities.service';
 
 @Injectable()
@@ -16,25 +16,25 @@ export class HeroesService {
     private utilitiesService: UtilitiesService
   ) {}
 
-  getHeroes(): Observable<IHeroes[]> {
+  getHeroes(): Observable<IHeroe[]> {
     return this.http
-      .get<IHeroes[]>(this.heroesBaseUrl)
+      .get<IHeroe[]>(this.heroesBaseUrl)
       .pipe(catchError(this.handleError));
   }
 
-  getHeroe(id: number): Observable<IHeroes> {
+  getHeroe(id: number): Observable<IHeroe> {
     return this.http
-      .get<IHeroes>(this.heroesBaseUrl + '/' + id)
+      .get<IHeroe>(this.heroesBaseUrl + '/' + id)
       .pipe(catchError(this.handleError));
   }
 
-  insertHeroe(heroe: IHeroes): Observable<IHeroes> {
+  insertHeroe(heroe: IHeroe): Observable<IHeroe> {
     return this.http
-      .post<IHeroes>(this.heroesBaseUrl, heroe)
+      .post<IHeroe>(this.heroesBaseUrl, heroe)
       .pipe(catchError(this.handleError));
   }
 
-  updateHeroe(heroe: IHeroes): Observable<boolean> {
+  updateHeroe(heroe: IHeroe): Observable<boolean> {
     return this.http
       .put<IApiResponse>(this.heroesBaseUrl + '/' + heroe.id, heroe)
       .pipe(

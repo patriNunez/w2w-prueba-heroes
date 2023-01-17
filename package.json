@@ -10,7 +10,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install",
-    "mock:server": "json-server --watch heroes.json"
+    "mock-server": "json-server --watch heroes.json"
   },
   "private": true,
   "dependencies": {

@@ -1,4 +1,4 @@
-export interface IHeroes {
+export interface IHeroe {
   id: number;
   name: string;
   age: number;
@@ -8,4 +8,8 @@ export interface IHeroes {
 export interface IApiResponse {
   status: boolean;
   error?: string;
+}
+
+export interface DeleteDialogData {
+  heroe: IHeroe;
 }
