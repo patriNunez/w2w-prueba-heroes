@@ -9,4 +9,11 @@ const routes: Routes = [{ path: '', component: HeroesComponent }];
 })
 export class HeroesRoutingModule {
   static components = [HeroesComponent];
+  typesOfShoes: string[] = [
+    'Boots',
+    'Clogs',
+    'Loafers',
+    'Moccasins',
+    'Sneakers',
+  ];
 }

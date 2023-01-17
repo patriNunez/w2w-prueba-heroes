@@ -24,6 +24,42 @@
                 "name": "wonder women",
                 "age": 26,
                 "power": "fly"
+            },
+            {
+                "id" : 5,
+                "name": "Groot",
+                "age": 26,
+                "power": "fly"
+            },
+            {
+                "id" : 6,
+                "name": "spider man",
+                "age": 26,
+                "power": "fly"
+            },
+            {
+                "id" : 7,
+                "name": "Captain America",
+                "age": 26,
+                "power": "fly"
+            },
+            {
+                "id" : 8,
+                "name": "Aquaman",
+                "age": 26,
+                "power": "fly"
+            },
+            {
+                "id" : 9,
+                "name": "Hulk",
+                "age": 26,
+                "power": "fly"
+            },
+            {
+                "id" : 10,
+                "name": "Wanda Maximoff",
+                "age": 26,
+                "power": "fly"
             }
         ]
     }

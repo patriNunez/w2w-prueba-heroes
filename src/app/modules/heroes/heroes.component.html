@@ -1,2 +1,20 @@
-<p>heroes works!</p>
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+<mat-form-field appearance="fill">
+    <mat-label>Fill form field</mat-label>
+    <input matInput [formControl]="searchFormControl" placeholder="Search Heroe">
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+<mat-selection-list #heroes [multiple]="false" (selectionChange)="selectionChange($event.option)">
+  <mat-list-option *ngFor="let heroe of search$|async" [value]="heroe"
+  [selected]="heroeControl.value && heroeControl.value?.indexOf(heroe)>=0">
+    {{heroe}}
+  </mat-list-option>
+</mat-selection-list>
+<p>
+  Option selected: {{heroes.selectedOptions.hasValue() ? heroes.selectedOptions.selected[0].value : 'None'}}
+</p>
+<mat-paginator [length]="allHeroesList.length" [pageSize]="5" (page)='paginate($event)'
+	[pageSizeOptions]="sizeOptions" showFirstLastButtons>
+
+</mat-paginator>
