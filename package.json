@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "mock:server": "json-server --watch heroes.json"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jasmine-core": "~3.10.0",
+    "json-server": "^0.17.1",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
