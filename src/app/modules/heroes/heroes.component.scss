@@ -1,8 +1,24 @@
-.actions {
-    display: flex;
-    justify-content: center;
+.list-content {
+    padding: 1vw;
 
-    button {
-        margin: 0 10px 0 10px;
+    h1 {
+        text-align: center;
     }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin: 0 10px 0 10px;
+        }
+    }
+}
+
+.search {
+    width: 100%;
+}
+
+.list {
+    margin-bottom: 12px;
 }

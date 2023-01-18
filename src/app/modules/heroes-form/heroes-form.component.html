@@ -1,4 +1,5 @@
-    <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
+<div class="spinner" *ngIf=loading><mat-spinner></mat-spinner></div>   
+   <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
                     <h1>{{title}}</h1>
                 <mat-form-field appearance="fill">
@@ -6,29 +7,30 @@
                     <input matInput type="text" formControlName="name">
                 </mat-form-field>
               <!-- error block -->
-             <!--  <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.required">
-                <sup>*</sup>Enter your name
-              </div>
-              <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.minlength">
+              <small class="invalid" *ngIf="heroeForm.controls['name'].errors?.minlength">
                 <sup>*</sup>Name must be 2 characters long
-              </div>
-              <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.pattern">
-                <sup>*</sup>No special charcter allowed
-              </div>
-            </div>
- -->
+              </small> 
+              <small class="invalid" *ngIf="heroeForm.controls['name'].errors?.pattern">
+                <sup>*</sup>No special character allowed
+              </small>
             <mat-form-field appearance="fill">
-                <mat-label>Age *</mat-label>
+                <mat-label>Age</mat-label>
                 <input matInput type="number" formControlName="age">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Power *</mat-label>
+                <mat-label>Power</mat-label>
                 <input matInput formControlName="power">
             </mat-form-field>
+            <small class="invalid" *ngIf="heroeForm.controls.power.errors?.minlength">
+                <sup>*</sup>Power must be 2 characters long
+              </small> 
+              <small class="invalid" *ngIf="heroeForm.controls.power.errors?.pattern">
+                <sup>*</sup>No special character allowed
+              </small>
 
 
              <!-- Submit Button -->
-          <button mat-button color="primary" type="submit">Create Superhero</button>
-        </div>
-    </form>
+          <button mat-button color="primary" type="submit" [disabled]="heroeForm.invalid">Enviar Superhero</button>
+    </div>
+        </form>

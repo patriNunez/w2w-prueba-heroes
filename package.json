@@ -8,9 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "prettier": "prettier --write .",
-    "prepare": "husky install",
-    "mock-server": "json-server --watch heroes.json"
+    "prettier": "prettier --write ."
   },
   "private": true,
   "dependencies": {

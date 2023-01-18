@@ -1,66 +1,19 @@
 {
-    "heroes": {
-        "data": [
-            {
-                "id" : 1,
-                "name": "SuperMan",
-                "age": 23,
-                "power": "fly"
-            },
-            {
-                "id" : 2,
-                "name": "Batman",
-                "age": 35,
-                "power": "fly"
-            },
-            {
-                "id" : 3,
-                "name": "IronMan",
-                "age": 33,
-                "power": "technology"
-            },
-            {
-                "id" : 4,
-                "name": "wonder women",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 5,
-                "name": "Groot",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 6,
-                "name": "spider man",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 7,
-                "name": "Captain America",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 8,
-                "name": "Aquaman",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 9,
-                "name": "Hulk",
-                "age": 26,
-                "power": "fly"
-            },
-            {
-                "id" : 10,
-                "name": "Wanda Maximoff",
-                "age": 26,
-                "power": "fly"
-            }
-        ]
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
