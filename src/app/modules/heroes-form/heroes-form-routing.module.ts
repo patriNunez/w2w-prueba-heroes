@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeroesFormComponent } from '../heroes-form/heroes-form.component';
-import { HeroesComponent } from './heroes.component';
-const routes: Routes = [
-  {
-    path: '',
-    component: HeroesComponent,
-  },
-];
+
+const routes: Routes = [{ path: '', component: HeroesFormComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HeroesRoutingModule {
-  static components = [HeroesComponent];
+export class HeroesFormRoutingModule {
+  static components = [HeroesFormComponent];
 }

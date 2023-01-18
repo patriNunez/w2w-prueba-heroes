@@ -1,0 +1,34 @@
+    <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
+            <div class="form-container">
+                    <h1>{{title}}</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
+              <!-- error block -->
+             <!--  <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.required">
+                <sup>*</sup>Enter your name
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.minlength">
+                <sup>*</sup>Name must be 2 characters long
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.name.controls.firstName.errors?.pattern">
+                <sup>*</sup>No special charcter allowed
+              </div>
+            </div>
+ -->
+            <mat-form-field appearance="fill">
+                <mat-label>Age *</mat-label>
+                <input matInput type="number" formControlName="age">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Power *</mat-label>
+                <input matInput formControlName="power">
+            </mat-form-field>
+
+
+             <!-- Submit Button -->
+          <button mat-button color="primary" type="submit">Create Superhero</button>
+        </div>
+    </form>

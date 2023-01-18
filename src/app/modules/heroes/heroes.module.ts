@@ -4,17 +4,8 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from '../../shared/shared.module';
 import { MatListModule } from '@angular/material/list';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
-const MaterialModules = [
-  MatListModule,
-  MatFormFieldModule,
-  FormsModule,
-  ReactiveFormsModule,
-  MatInputModule,
-];
+const MaterialModules = [MatListModule];
 
 @NgModule({
   declarations: [HeroesRoutingModule.components],
