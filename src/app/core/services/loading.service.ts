@@ -11,6 +11,7 @@ export class LoadingService {
    */
   loadingMap: Map<string, boolean> = new Map<string, boolean>();
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
   /**
