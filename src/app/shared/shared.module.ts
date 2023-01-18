@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 const ANGULAR_MODULES = [
   MatDialogModule,
@@ -14,6 +15,7 @@ const ANGULAR_MODULES = [
   ReactiveFormsModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatIconModule,
 ];
 
 @NgModule({

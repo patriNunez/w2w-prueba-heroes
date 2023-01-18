@@ -30,11 +30,12 @@ export class HeroesComponent implements OnInit, OnDestroy {
   actualPagination = 0;
   pageSize = this.itemsPerPage;
 
-  searchFormControl = new FormControl();
   heroeControl: FormControl;
+  searchFormControl = new FormControl();
 
   searchSubject: BehaviorSubject<IHero[]> = new BehaviorSubject<IHero[]>([]);
   search$: Observable<IHero[]> = new Observable<IHero[]>();
+
   allHeroesList: IHero[];
   heroesFiltered: IHero[];
 
@@ -53,7 +54,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.listenToLoading());
+    this.listenToLoading();
     this.heroesService.getHeroes().subscribe((heroes) => {
       this.allHeroesList = heroes;
       this.searchSubject = new BehaviorSubject(this.allHeroesList);
@@ -100,27 +101,30 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   openDialog() {
-    if (this.heroeControl.value?.name) {
-      const dialog = this.dialog.open(DeleteDialogComponent, {
-        data: {
-          heroe: this.heroeControl.value,
-        },
-      });
-      this.subscriptions.add(
-        dialog.afterClosed().subscribe((result: IHero) => {
-          this.heroesService.deleteHeroe(result.id).subscribe((x) => {
-            this.allHeroesList = this.allHeroesList.filter(
-              (item) => item !== result
-            );
-            this.heroesFiltered = this.heroesFiltered.filter(
-              (item) => item !== result
-            );
-            this.changeResults(this.heroesFiltered);
-            this.paginator.firstPage();
-          });
-        })
-      );
-    }
+    const dialog = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        heroe: this.heroeControl.value,
+      },
+    });
+    this.subscriptions.add(
+      dialog.afterClosed().subscribe((result: IHero) => {
+        this.deleteHero(result);
+      })
+    );
+  }
+
+  deleteHero(hero: IHero): void {
+    this.subscriptions.add(
+      this.heroesService.deleteHeroe(hero.id).subscribe((status) => {
+        this.allHeroesList = this.allHeroesList.filter((item) => item !== hero);
+        this.heroesFiltered = this.heroesFiltered.filter(
+          (item) => item !== hero
+        );
+        this.changeResults(this.heroesFiltered);
+        this.heroeControl.setValue(null);
+        this.paginator.firstPage();
+      })
+    );
   }
 
   identify(index: any, item: any) {
@@ -128,9 +132,11 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   listenToLoading(): void {
-    this.loadingService.loadingSub.pipe(delay(0)).subscribe((loading) => {
-      this.loading = loading;
-    });
+    this.subscriptions.add(
+      this.loadingService.loadingSub.pipe(delay(0)).subscribe((loading) => {
+        this.loading = loading;
+      })
+    );
   }
 
   ngOnDestroy(): void {

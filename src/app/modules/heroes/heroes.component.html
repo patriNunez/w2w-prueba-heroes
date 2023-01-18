@@ -4,7 +4,6 @@
 <mat-form-field appearance="fill" class="search">
     <mat-label>Search...</mat-label>
     <input matInput [formControl]="searchFormControl" placeholder="Search Heroe">
-    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
   </mat-form-field>
 
 <mat-selection-list #heroes [multiple]="false" (selectionChange)="selectionChange($event.option)">

@@ -1,4 +1,7 @@
-<div class="spinner" *ngIf=loading><mat-spinner></mat-spinner></div>   
+<div class="spinner" *ngIf=loading><mat-spinner></mat-spinner></div>  
+  <button mat-fab class="button" color="accent" routerLink='/'>
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
    <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
             <div class="form-container">
                     <h1>{{title}}</h1>
@@ -31,6 +34,6 @@
 
 
              <!-- Submit Button -->
-          <button mat-button color="primary" type="submit" [disabled]="heroeForm.invalid">Enviar Superhero</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="heroeForm.invalid">Enviar Superhero</button>
     </div>
         </form>
