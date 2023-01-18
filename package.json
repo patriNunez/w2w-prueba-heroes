@@ -5,10 +5,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:docker": "docker image build -t w2w-heroes .",
+    "start:docker": "docker run -p 4200:4200 --rm w2w-heroes",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prettier": "prettier --write ."
+
   },
   "private": true,
   "dependencies": {

@@ -31,6 +31,7 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
     if (id === 'add') {
       this.mode = 'creation';
     } else {
+      // edit option
       heroesService.getHeroe(Number(id)).subscribe((result: IHero) => {
         this.createFormGroup(result);
       });
@@ -40,7 +41,7 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createFormGroup(null);
-    this.subscription.add(this.listenToLoading());
+    this.listenToLoading();
   }
 
   createFormGroup(hero: IHero | null): void {
@@ -67,9 +68,11 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
   }
 
   listenToLoading(): void {
-    this.loadingService.loadingSub.pipe(delay(0)).subscribe((loading) => {
-      this.loading = loading;
-    });
+    this.subscription.add(
+      this.loadingService.loadingSub.pipe(delay(0)).subscribe((loading) => {
+        this.loading = loading;
+      })
+    );
   }
 
   onSubmit() {

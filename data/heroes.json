@@ -1,0 +1,64 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "SuperMan",
+      "age": 23,
+      "power": "laser beams"
+    },
+    {
+      "id": 2,
+      "name": "BatMan",
+      "age": 35,
+      "power": "fly"
+    },
+    {
+      "id": 3,
+      "name": "IronMan",
+      "age": 33,
+      "power": "technology"
+    },
+    {
+      "id": 4,
+      "name": "wonder women",
+      "age": 26,
+      "power": "fly"
+    },
+    {
+      "id": 5,
+      "name": "Groot",
+      "age": 26,
+      "power": "fly"
+    },
+    {
+      "id": 6,
+      "name": "spiderMan",
+      "age": 26,
+      "power": "spider web"
+    },
+    {
+      "id": 7,
+      "name": "Captain America",
+      "age": 26,
+      "power": "strength"
+    },
+    {
+      "id": 8,
+      "name": "Aquaman",
+      "age": 26,
+      "power": "water"
+    },
+    {
+      "id": 9,
+      "name": "Hulk",
+      "age": 26,
+      "power": "strength"
+    },
+    {
+      "id": 10,
+      "name": "Wanda Maximoff",
+      "age": 26,
+      "power": "strength"
+    }
+  ]
+}

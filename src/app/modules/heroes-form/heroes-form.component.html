@@ -19,14 +19,14 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Power</mat-label>
+                <mat-label>Power quality</mat-label>
                 <input matInput formControlName="power">
             </mat-form-field>
             <small class="invalid" *ngIf="heroeForm.controls.power.errors?.minlength">
                 <sup>*</sup>Power must be 2 characters long
               </small> 
               <small class="invalid" *ngIf="heroeForm.controls.power.errors?.pattern">
-                <sup>*</sup>No special character allowed
+                <sup>*</sup>No special character allowed or numbers
               </small>
 
 

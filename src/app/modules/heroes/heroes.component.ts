@@ -22,14 +22,17 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class HeroesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
+
   itemsPerPage = 5;
   sizeOptions = [5, 10, 25, 100];
   loading = false;
   subscriptions: Subscription = new Subscription();
-  searchFormControl = new FormControl();
-  heroeControl: FormControl;
   actualPagination = 0;
   pageSize = this.itemsPerPage;
+
+  searchFormControl = new FormControl();
+  heroeControl: FormControl;
+
   searchSubject: BehaviorSubject<IHero[]> = new BehaviorSubject<IHero[]>([]);
   search$: Observable<IHero[]> = new Observable<IHero[]>();
   allHeroesList: IHero[];
