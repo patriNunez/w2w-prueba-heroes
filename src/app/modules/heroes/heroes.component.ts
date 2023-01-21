@@ -115,7 +115,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
   deleteHero(hero: IHero): void {
     this.subscriptions.add(
-      this.heroesService.deleteHeroe(hero.id).subscribe((status) => {
+      this.heroesService.deleteHero(hero.id).subscribe((status) => {
         this.allHeroesList = this.allHeroesList.filter((item) => item !== hero);
         this.heroesFiltered = this.heroesFiltered.filter(
           (item) => item !== hero

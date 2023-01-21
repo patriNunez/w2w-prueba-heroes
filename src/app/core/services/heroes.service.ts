@@ -8,8 +8,8 @@ import { UtilitiesService } from './utilities.service';
 
 @Injectable()
 export class HeroesService {
-  baseUrl = this.utilitiesService.getApiUrl();
-  heroesBaseUrl = this.baseUrl + '/heroes';
+  private baseUrl = this.utilitiesService.getApiUrl();
+  private heroesBaseUrl = this.baseUrl + '/heroes';
 
   constructor(
     private http: HttpClient,
@@ -22,19 +22,19 @@ export class HeroesService {
       .pipe(catchError(this.handleError));
   }
 
-  getHeroe(id: number): Observable<IHero> {
+  getHero(id: number): Observable<IHero> {
     return this.http
       .get<IHero>(this.heroesBaseUrl + '/' + id)
       .pipe(catchError(this.handleError));
   }
 
-  insertHeroe(heroe: IHero): Observable<IHero> {
+  insertHero(heroe: IHero): Observable<IHero> {
     return this.http
       .post<IHero>(this.heroesBaseUrl, heroe)
       .pipe(catchError(this.handleError));
   }
 
-  updateHeroe(heroe: IHero): Observable<boolean> {
+  updateHero(heroe: IHero): Observable<boolean> {
     return this.http
       .put<IApiResponse>(this.heroesBaseUrl + '/' + heroe.id, heroe)
       .pipe(
@@ -43,7 +43,7 @@ export class HeroesService {
       );
   }
 
-  deleteHeroe(id: number): Observable<boolean> {
+  deleteHero(id: number): Observable<boolean> {
     return this.http.delete<IApiResponse>(this.heroesBaseUrl + '/' + id).pipe(
       map((res) => res.status),
       catchError(this.handleError)

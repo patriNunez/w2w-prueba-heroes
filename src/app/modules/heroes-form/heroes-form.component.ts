@@ -32,7 +32,7 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
       this.mode = 'creation';
     } else {
       // edit option
-      heroesService.getHeroe(Number(id)).subscribe((result: IHero) => {
+      heroesService.getHero(Number(id)).subscribe((result: IHero) => {
         this.createFormGroup(result);
       });
     }
@@ -78,12 +78,12 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.mode === 'creation') {
       this.heroesService
-        .insertHeroe(this.heroeForm.value)
+        .insertHero(this.heroeForm.value)
         .pipe(take(1))
         .subscribe((x) => this.router.navigateByUrl('/'));
     } else {
       this.heroesService
-        .updateHeroe(this.heroeForm.value)
+        .updateHero(this.heroeForm.value)
         .pipe(take(1))
         .subscribe((x) => this.router.navigateByUrl('/'));
     }
