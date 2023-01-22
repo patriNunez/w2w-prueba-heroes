@@ -33,6 +33,8 @@ export class HeroesFormComponent implements OnInit, OnDestroy {
     } else {
       // edit option
       heroesService.getHero(Number(id)).subscribe((result: IHero) => {
+        console.log(result);
+        
         this.createFormGroup(result);
       });
     }

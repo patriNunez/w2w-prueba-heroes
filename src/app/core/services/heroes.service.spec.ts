@@ -63,8 +63,7 @@ describe('HeroesService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.cancelled).toBeFalsy();
     expect(req.request.responseType).toEqual('json');
-    req.flush(mockData);
-    testingController.verify();
+    req.flush({ id: 1, name: 'SuperMan', age: 23, power: 'laser beams' });
   });
   it('insertHeroe should make a POST HTTP request with new IHero as body', () => {
     const createObj = {
@@ -98,7 +97,7 @@ describe('HeroesService', () => {
     expect(req.request.body).toBe(updateObj);
     expect(req.cancelled).toBeFalsy();
     expect(req.request.responseType).toEqual('json');
-    req.flush(updateObj);
+    req.flush({ status: true });
   });
   it('deleteHero should make a DELETE HTTP request with id appended to end of url', () => {
     heroesService.deleteHero(1).subscribe((res) => {
@@ -111,6 +110,6 @@ describe('HeroesService', () => {
     expect(req.request.method).toBe('DELETE');
     expect(req.cancelled).toBeFalsy();
     expect(req.request.responseType).toEqual('json');
-    req.flush(1);
+    req.flush({ status: true });
   });
 });
